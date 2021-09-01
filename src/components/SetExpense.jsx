@@ -16,7 +16,7 @@ class SetExpense extends React.Component {
       method: '',
       tag: '',
     };
-    this.getCurrency = this.getCurrency.bind(this);
+    // this.getCurrencies = this.getCurrencies.bind(this);
     this.currencyOptions = this.currencyOptions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.createExpense = this.createExpense.bind(this);
@@ -24,14 +24,22 @@ class SetExpense extends React.Component {
   }
 
   // fazer a chamada da API e listagem das moedas após carregamento da página
-  componentDidMount() {
-    getCurrency().then((result) => this.getCurrencies(result));
+  async componentDidMount() {
+    const { saveApiCurrencies } = this.props;
+    const apiResponse = await getCurrency();
+    const coinList = Object.keys(apiResponse)
+      .map((element) => (apiResponse[element]))
+      .filter(({ codein }) => codein !== 'BRLT');
+    this.handleChange(coinList);
+    saveApiCurrencies(coinList.map((currency) => currency.code));
   }
 
-  getCurrencies(curr) {
-    const { saveApiCurrencies } = this.props;
-    const currList = Object.keys(curr).filter((curr) = curr !== 'USDT');
-    saveApiCurrencies(currList);
+  // atualização do state com o evento de escolha
+  handleChange(target) {
+    const { name, value } = target;
+    this.setState({
+      [name]: { value },
+    });
   }
 
   // listar opções de moedas
@@ -45,14 +53,6 @@ class SetExpense extends React.Component {
         { currency }
       </option>
     ));
-  }
-
-  // atualização do state com o evento de escolha
-  handleChange(target) {
-    const { name, value } = target;
-    this.setState({
-      [name]: { value },
-    });
   }
 
   // criação de despesa com valor, desrição,moeda e tag

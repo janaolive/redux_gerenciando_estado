@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Header extends React.Component {
@@ -9,8 +10,8 @@ class Header extends React.Component {
     };
 
     this.exchangeExpense = this.exchangeExpense.bind(this);
-    this.createExpensesList = this.createExpensesList.bnd(this);
-    this.amountExpenses = this.updateTotalValue.bind(this);
+    this.createExpensesList = this.createExpensesList.bind(this);
+    this.amountExpenses = this.amountExpenses.bind(this);
     this.updateTotalValue = this.updateTotalValue.bind(this);
   }
 
@@ -49,7 +50,7 @@ class Header extends React.Component {
 
   // cálculo das despesas incluidas
   amountExpenses() {
-    const { expenses } = this.createExpensesList();
+    const expenses = this.createExpensesList();
     const totalExpenses = expenses.reduce((acc, curr) => acc + curr, 0);
     return totalExpenses;
   }
@@ -90,7 +91,11 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+const mapStateToProps = (state) => (
+  { userEmail: state.user.email, expenses: state.wallet.expenses }
+);
+
+export default connect(mapStateToProps)(Header);
 
 Header.propTypes = {
   userEmail: PropTypes.string,

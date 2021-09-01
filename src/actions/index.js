@@ -1,5 +1,5 @@
 // Coloque aqui suas actions
-export const SAVE_EMAIL = 'SET_EMAIL';
+export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const SAVE_EXPENSE = 'SAVE_EXPENSE';
 export const SAVE_EXCHANGE_RATE = 'SAVE_EXCHANGE_RATE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
