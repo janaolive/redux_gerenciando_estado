@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as user from '../actions';  
+import * as user from '../actions';
 
 // estado definido para utilização futura no estado global.
 // botão entrar desabilitado para cumprir a exigencia de 6 caracteres.

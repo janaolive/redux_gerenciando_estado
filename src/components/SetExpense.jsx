@@ -16,7 +16,6 @@ class SetExpense extends React.Component {
       method: '',
       tag: '',
     };
-    // this.getCurrencies = this.getCurrencies.bind(this);
     this.currencyOptions = this.currencyOptions.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.createExpense = this.createExpense.bind(this);
