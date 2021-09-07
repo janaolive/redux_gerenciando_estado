@@ -96,7 +96,7 @@ class SetExpense extends React.Component {
             id="valor"
             name="value"
             min="0"
-            onChange={ (event) => this.handleChange(event) }
+            onChange={ (e) => this.handleChange(e) }
             value={ value }
           />
         </label>
@@ -106,14 +106,14 @@ class SetExpense extends React.Component {
             id="descrição"
             type="text"
             name="description"
-            onChange={ (event) => this.handleChange(event) }
+            onChange={ (e) => this.handleChange(e) }
             value={ description }
           />
           <label htmlFor="moeda">
             <select
               id="moeda"
               name="currency"
-              onChange={ (event) => this.handleChange(event) }
+              onChange={ (e) => this.handleChange(e) }
               value={ currency }
             >
               { this.currencyOptions() }

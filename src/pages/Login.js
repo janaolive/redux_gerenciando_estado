@@ -26,33 +26,30 @@ class Login extends React.Component {
   // função recebe o evento da digitação e atualiza o estado local conforme usuario digita
   // o botão entrar será habilitado apenas se o campo email e senha estiverem corretamente preenchidos.
 
+  checkEmail() {
+    const { email } = this.state;
+    const eCheck = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+    return eCheck.test(email);
+  }
+
+  checkPassword() {
+    const { password } = this.state;
+    const minimunPassword = 5;
+    return (password.length > minimunPassword);
+  }
+
   handleChange({ target }) {
     const { value, name } = target;
     this.setState({
       [name]: value,
       disableButton: true,
     }, () => {
-      if (this.checkEmail && this.checkPassword()) {
+      if (this.checkEmail() && this.checkPassword()) {
         this.setState({
           disableButton: false,
         });
       }
     });
-  }
-
-  // conferência do formato do email.
-  // fonte de consulta: https://emailregex.com/
-  checkEmail() {
-    const { email } = this.state;
-    const check = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    return check.test(email);
-  }
-
-  // conferência da quantidade minima de caracteres da senha.
-  checkPassword() {
-    const { password } = this.state;
-    const minCharacters = 6;
-    return (password.length >= minCharacters);
   }
 
   render() {
@@ -66,7 +63,7 @@ class Login extends React.Component {
             name="email"
             type="text"
             data-testid="email-input"
-            onChange={ (event) => this.handleChange(event) }
+            onChange={ (e) => this.handleChange(e) }
             value={ email }
             placeholder="Digite seu e-mail"
           />
@@ -74,7 +71,7 @@ class Login extends React.Component {
             name="password"
             type="text"
             data-testid="password-input"
-            onChange={ (event) => this.handleChange(event) }
+            onChange={ (e) => this.handleChange(e) }
             value={ password }
             placeholder=" Digite uma senha com no mínimo 6 caracteres"
           />
