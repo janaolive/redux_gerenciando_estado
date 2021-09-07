@@ -2,16 +2,12 @@
 import {
   SAVE_EXPENSE,
   DELETE_EXPENSE,
-  EDIT_EXPENSE,
-  SAVE_EDIT_EXPENSE,
   SAVE_CURRENCIES,
 } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
-  edit: false,
-  idEdit: '',
 };
 
 function walletReducer(state = INITIAL_STATE, action) {
@@ -30,18 +26,6 @@ function walletReducer(state = INITIAL_STATE, action) {
     return {
       ...state,
       expenses: [...action.payload],
-    };
-  case EDIT_EXPENSE:
-    return {
-      ...state,
-      edit: true,
-      idEdit: action.payload,
-    };
-  case SAVE_EDIT_EXPENSE:
-    return {
-      ...state,
-      expenses: [...action.payload],
-      edit: false,
     };
   default:
     return state;

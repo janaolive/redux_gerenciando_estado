@@ -3,8 +3,6 @@ export const SAVE_EMAIL = 'SAVE_EMAIL';
 export const SAVE_EXPENSE = 'SAVE_EXPENSE';
 export const SAVE_EXCHANGE_RATE = 'SAVE_EXCHANGE_RATE';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
-export const EDIT_EXPENSE = 'EDIT_EXPENSE';
-export const SAVE_EDIT_EXPENSE = 'SAVE_EDIT_EXPENSE';
 export const SAVE_CURRENCIES = 'SAVE_CURRENCIES';
 
 export const saveEmail = (payload) => ({
@@ -24,16 +22,6 @@ export const saveCurrencies = (payload) => ({
 
 export const deleteExpense = (payload) => ({
   type: DELETE_EXPENSE,
-  payload,
-});
-
-export const editExpense = (payload) => ({
-  type: EDIT_EXPENSE,
-  payload,
-});
-
-export const saveEditExpense = (payload) => ({
-  type: SAVE_EDIT_EXPENSE,
   payload,
 });
 

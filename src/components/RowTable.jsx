@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpense, saveEditExpense } from '../actions';
+import { deleteExpense } from '../actions';
 
 class RowTableExpense extends React.Component {
   constructor() {
@@ -32,7 +32,6 @@ class RowTableExpense extends React.Component {
     const exchangeObject = this.exchangeObject();
     const exchangeName = this.exchangeName(exchangeObject);
     const exchangeValue = this.exchangeValue(exchangeObject);
-    console.log(exchangeObject);
     this.setState({
       exchangeUsed: exchangeName[0],
       exchangeValue,
@@ -44,14 +43,12 @@ class RowTableExpense extends React.Component {
     const exchangeObject = Object.entries(exchangeRates).filter(
       (item) => item[1].code === currency,
     );
-    console.log(exchangeObject);
     return exchangeObject;
   }
 
   exchangeName(exchangeObject) {
     const exchangeName = exchangeObject[0][1].name;
     const exchangeUsed = exchangeName.split('/');
-    console.log(exchangeUsed[0]);
     return exchangeUsed;
   }
 
@@ -67,7 +64,7 @@ class RowTableExpense extends React.Component {
   }
 
   render() {
-    const { expense: { description, tag, method, value, id }, editExpense } = this.props;
+    const { expense: { description, tag, method, value, id } } = this.props;
     const { exchangeUsed, exchangeValue } = this.state;
     return (
       <tr>
@@ -102,13 +99,6 @@ class RowTableExpense extends React.Component {
           >
             Excluir
           </button>
-          <button
-            type="button"
-            data-testid="edit-btn"
-            onClick={ () => editExpense(id) }
-          >
-            Alterar despesa
-          </button>
         </td>
       </tr>
     );
@@ -119,13 +109,11 @@ const mapStateToProps = (state) => ({ expenses: state.wallet.expenses });
 
 const mapDispatchToProps = (dispatch) => ({
   removeExpense: (updatedExpenses) => dispatch(deleteExpense(updatedExpenses)),
-  editExpense: (id) => dispatch(saveEditExpense(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RowTableExpense);
 
 RowTableExpense.propTypes = {
-  editExpense: PropTypes.func.isRequired,
   expense: PropTypes.shape({
     id: PropTypes.number,
     description: PropTypes.string,
