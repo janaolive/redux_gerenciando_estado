@@ -90,7 +90,7 @@ class SetExpense extends React.Component {
     return (
       <form>
         <label htmlFor="valor">
-          Valor:
+          Valor
           <input
             type="number"
             id="valor"
@@ -101,7 +101,7 @@ class SetExpense extends React.Component {
           />
         </label>
         <label htmlFor="descrição">
-          Desrição:
+          Descrição
           <input
             id="descrição"
             type="text"
@@ -110,6 +110,7 @@ class SetExpense extends React.Component {
             value={ description }
           />
           <label htmlFor="moeda">
+            Moeda
             <select
               id="moeda"
               name="currency"
@@ -125,7 +126,7 @@ class SetExpense extends React.Component {
             type="button"
             onClick={ () => this.saveExpense() }
           >
-            Adicionar despesa:
+            Adicionar despesa
           </button>
         </label>
       </form>

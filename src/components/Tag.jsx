@@ -7,12 +7,12 @@ class Tag extends React.Component {
     return (
       <div>
         <label htmlFor="tag">
-          Tag:
+          Tag
           <select
             id="tag"
             name="tag"
             data-testid="tag-input"
-            onChange={ (event) => handleChange(event) }
+            onChange={ (e) => handleChange(e) }
             value={ value }
           >
             <option value="Alimentação">Alimentação</option>
